@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="se233.audioconverter.controller.MainViewController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <!-- Menu Bar -->
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Clear All" onAction="#onClear"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Exit" onAction="#onClose"/>
+            </Menu>
+            <Menu text="Help">
+                <MenuItem text="About"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <VBox spacing="10" style="-fx-padding: 15;">
+            <!-- Header -->
+            <Label text="Audio Converter" style="-fx-font-size: 24; -fx-font-weight: bold;"/>
+            <Label text="Drag and drop audio files below (MP3, WAV, M4A, FLAC)"
+                   style="-fx-text-fill: gray;"/>
+
+            <Separator/>
+
+            <!-- File List -->
+            <VBox spacing="5" VBox.vgrow="ALWAYS">
+                <Label text="Files to Convert:" style="-fx-font-weight: bold;"/>
+                <ListView fx:id="fileListView"
+                          VBox.vgrow="ALWAYS"
+                          style="-fx-border-color: #cccccc; -fx-border-width: 2; -fx-border-radius: 5;"/>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Configuration Panel -->
+            <VBox spacing="10" style="-fx-background-color: #f5f5f5; -fx-padding: 10; -fx-background-radius: 5;">
+                <Label text="Conversion Settings" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+
+                <!-- Output Format -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Label text="Output Format:" minWidth="120"/>
+                    <ComboBox fx:id="formatComboBox" prefWidth="200"/>
+                </HBox>
+
+                <!-- Quality -->
+                <VBox spacing="5">
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Quality:" minWidth="120"/>
+                        <Label fx:id="qualityLabel" text="Standard (128 kbps)"
+                               style="-fx-font-weight: bold;"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="" minWidth="120"/>
+                        <Slider fx:id="qualitySlider" prefWidth="300"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Advanced Settings Toggle -->
+                <CheckBox fx:id="showAdvancedCheckBox" text="Show Advanced Settings"/>
+
+                <!-- Advanced Settings Box -->
+                <VBox fx:id="advancedSettingsBox" spacing="10"
+                      style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #cccccc; -fx-border-width: 1; -fx-border-radius: 3;">
+
+                    <Label text="Advanced Settings" style="-fx-font-weight: bold;"/>
+
+                    <!-- Sample Rate -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Sample Rate:" minWidth="120"/>
+                        <ComboBox fx:id="sampleRateComboBox" prefWidth="200"/>
+                    </HBox>
+
+                    <!-- Channels -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="Channels:" minWidth="120"/>
+                        <ComboBox fx:id="channelsComboBox" prefWidth="200"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <Separator/>
+
+            <!-- Progress -->
+            <VBox spacing="5">
+                <Label text="Progress:" style="-fx-font-weight: bold;"/>
+                <ProgressBar fx:id="progressBar" prefWidth="Infinity" prefHeight="25"/>
+                <Label fx:id="statusLabel" text="Ready" style="-fx-text-fill: gray;"/>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button fx:id="convertButton" text="Convert"
+                        prefWidth="120" prefHeight="35"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;"/>
+                <Button fx:id="clearButton" text="Clear All"
+                        prefWidth="120" prefHeight="35"
+                        style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            </HBox>
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox style="-fx-background-color: #f0f0f0; -fx-padding: 10;" alignment="CENTER">
+            <Label text="Audio Converter v1.0 | Supports: MP3, WAV, M4A, FLAC"
+                   style="-fx-text-fill: gray; -fx-font-size: 11;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
